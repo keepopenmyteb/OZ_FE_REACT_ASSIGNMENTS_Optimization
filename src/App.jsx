@@ -2,10 +2,10 @@ import React, { useState, useMemo, useCallback } from "react";
 import "./App.css";
 
 // 리스트 항목 컴포넌트
-const ListItem = ({ item, onClick }) => {
+const ListItem = React.memo(({ item, onClick }) => {
   console.log(`Rendering ${item}`);
   return <li onClick={() => onClick(item)}>{item}</li>;
-};
+});
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +24,7 @@ const App = () => {
 
  const handleItemClick = useCallback((item) => {
     setSelectedItem(item);
-  }, []) 
+  }, [setSelectedItem]) 
 
   return (
     <div className="app-wrapper">
