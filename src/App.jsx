@@ -24,7 +24,7 @@ const App = () => {
 
  const handleItemClick = useCallback((item) => {
     setSelectedItem(item);
-  }, [setSelectedItem]) 
+  }, []) 
 
   return (
     <div className="app-wrapper">
