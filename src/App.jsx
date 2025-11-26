@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import "./App.css";
 
 // 리스트 항목 컴포넌트
@@ -11,15 +11,20 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const items = ["Apple", "Banana", "Cherry", "Date", "Fig", "Grape"];
+  const items = useMemo(() => {
+    return ['Apple', 'Banana', 'Cherry', 'Date', 'Fig', 'Grape']
+  }, []);
 
-  const filteredItems = items.filter((item) =>
+  const filteredItems = useMemo(() => {
+    return items.filter((item) =>
     item.toLowerCase().includes(searchTerm.toLowerCase())
   );
+ }, [items, searchTerm])
 
-  const handleItemClick = (item) => {
+
+ const handleItemClick = useCallback((item) => {
     setSelectedItem(item);
-  };
+  }, []) 
 
   return (
     <div className="app-wrapper">
